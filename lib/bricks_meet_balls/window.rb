@@ -12,7 +12,7 @@ module BricksMeetBalls
 
     def initialize(width=240, height=480,
                    num_of_rows=2, num_of_columns=3, num_of_balls=1,
-                   ball_image=nil, brick_image=nil)
+                   ball_image=nil, brick_images=nil)
       super(width, height, false)
       self.caption = "Bricks meet Balls"
       @x1 = 0
@@ -24,7 +24,7 @@ module BricksMeetBalls
       @bar = Bar.new(self)
       @message = nil
       @ball_image = ball_image
-      @brick_image = brick_image
+      @brick_images = brick_images
       create_bricks(num_of_columns, num_of_rows)
       create_balls(num_of_balls)
     end
@@ -106,12 +106,17 @@ module BricksMeetBalls
     def create_bricks(num_of_columns, num_of_rows)
       1.upto(num_of_columns) do |column|
         1.upto(num_of_rows) do |row|
+          if @brick_images.is_a?(Array)
+            brick_image = @brick_images.sample
+          else
+            brick_image = @brick_images
+          end
           @bricks << Brick.new(self,
                                column,
                                row,
                                self.width / num_of_columns,
                                self.width / num_of_columns / 3,
-                               @brick_image)
+                               brick_image)
         end
       end
     end
