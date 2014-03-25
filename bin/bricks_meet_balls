@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "bricks_meet_balls/command"
+
+BricksMeetBalls::Command.run
