@@ -26,6 +26,10 @@ Or install it yourself as:
 
 See examples/ directory.
 
+## License
+
+MIT License. See LICENSE.txt for details.
+
 ## Contributing
 
 1. Fork it ( http://github.com/myokoym/bricks_meet_balls/fork )
