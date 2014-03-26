@@ -31,6 +31,7 @@ module BricksMeetBalls
       @endless = endless
       create_bricks(@num_of_columns, @num_of_rows)
       create_balls(@num_of_balls)
+      @background_image = nil
     end
 
     def update
@@ -107,12 +108,22 @@ module BricksMeetBalls
       end
     end
 
+    def set_background_image(image_path)
+      @background_image = Gosu::Image.new(self, image_path, false)
+    end
+
     private
     def draw_area
       draw_square(self,
                   0, 0,
                   self.width, self.height,
                   Gosu::Color::WHITE, ZOrder::Background)
+      return unless @background_image
+      @background_image.draw(0,
+                             0,
+                             ZOrder::Background,
+                             1.0 * self.width  / @background_image.width,
+                             0.5 * self.height / @background_image.height)
     end
 
     def create_bricks(num_of_columns, num_of_rows)

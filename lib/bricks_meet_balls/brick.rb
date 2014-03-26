@@ -22,6 +22,10 @@ module BricksMeetBalls
     end
 
     def draw
+      draw_square(@window,
+                  @x1, @y1,
+                  @x2, @y2,
+                  Gosu::Color::WHITE, ZOrder::Brick)
       draw_frame(@window,
                  @x1, @y1,
                  @x2, @y2,

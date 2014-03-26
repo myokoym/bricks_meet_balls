@@ -58,4 +58,6 @@ window = BricksMeetBalls::Window.new(width,
                                      brick_images,
                                      endless)
 
+window.set_background_image(brick_images.first)
+
 window.show
