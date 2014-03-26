@@ -39,6 +39,7 @@ height = 480
 num_of_rows = 10
 num_of_columns = 8
 num_of_balls = 29
+endless = true
 
 base_dir = File.expand_path(File.dirname(__FILE__))
 ball_images = BALL_IMAGES.collect do |ball_image|
@@ -54,6 +55,7 @@ window = BricksMeetBalls::Window.new(width,
                                      num_of_columns,
                                      num_of_balls,
                                      ball_images,
-                                     brick_images)
+                                     brick_images,
+                                     endless)
 
 window.show

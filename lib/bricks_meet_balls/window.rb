@@ -12,7 +12,7 @@ module BricksMeetBalls
 
     def initialize(width=240, height=480,
                    num_of_rows=2, num_of_columns=3, num_of_balls=1,
-                   ball_images=nil, brick_images=nil)
+                   ball_images=nil, brick_images=nil, endless=false)
       super(width, height, false)
       self.caption = "Bricks meet Balls"
       @x1 = 0
@@ -25,8 +25,12 @@ module BricksMeetBalls
       @message = nil
       @ball_images = ball_images
       @brick_images = brick_images
-      create_bricks(num_of_columns, num_of_rows)
-      create_balls(num_of_balls)
+      @num_of_columns = num_of_columns
+      @num_of_rows = num_of_rows
+      @num_of_balls = num_of_balls
+      @endless = endless
+      create_bricks(@num_of_columns, @num_of_rows)
+      create_balls(@num_of_balls)
     end
 
     def update
@@ -63,10 +67,18 @@ module BricksMeetBalls
       end
 
       if @message.nil? && @balls.empty?
+        if @endless
+          create_balls(@num_of_balls)
+        else
         @message = Message.new(self, "Game Over...")
+        end
       end
       if @message.nil? && @bricks.empty?
+        if @endless
+          create_bricks(@num_of_columns, @num_of_rows)
+        else
         @message = Message.new(self, "Congratulations!")
+        end
       end
     end
 
