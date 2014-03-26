@@ -70,14 +70,14 @@ module BricksMeetBalls
         if @endless
           create_balls(@num_of_balls)
         else
-        @message = Message.new(self, "Game Over...")
+          @message = Message.new(self, "Game Over...")
         end
       end
       if @message.nil? && @bricks.empty?
         if @endless
           create_bricks(@num_of_columns, @num_of_rows)
         else
-        @message = Message.new(self, "Congratulations!")
+          @message = Message.new(self, "Congratulations!")
         end
       end
     end
