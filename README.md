@@ -1,6 +1,9 @@
 # Bricks meet Balls
 
-A game template as Break the Bricks using Gosu and Ruby.
+A game template as Break the Bricks using [Gosu][] and [Ruby][].
+
+[Gosu]: http://www.libgosu.org/
+[Ruby]: https://www.ruby-lang.org/
 
 ## Installation
 
