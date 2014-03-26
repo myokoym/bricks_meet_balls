@@ -12,7 +12,7 @@ module BricksMeetBalls
       @window = window
       @x = @y = 0.0
       @ball_radius = @window.height * 0.01
-      @angle = 30 + (5.0 * [*1..10, *14..24].sample) - 90
+      @angle = ([*30..85, *95..150].sample) - 90
       @speed = @window.height * 0.005
       @moving = true
       if image_path
