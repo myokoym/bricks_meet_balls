@@ -35,13 +35,16 @@ module BricksMeetBalls
     end
 
     def update
+      friction = 0
       if button_down?(Gosu::KbLeft) ||
          button_down?(Gosu::MsLeft)
         @bar.move_left
+        friction -= 15
       end
       if button_down?(Gosu::KbRight) ||
          button_down?(Gosu::MsRight)
         @bar.move_right
+        friction += 15
       end
 
       @balls.each do |ball|
@@ -54,7 +57,7 @@ module BricksMeetBalls
           end
         end
         if @bar.hit?(ball.x, ball.y)
-          ball.reflect(@bar)
+          ball.reflect(@bar, friction)
         end
         if self.out_from_left_or_right?(ball.x)
           ball.reflect_y_axis

@@ -58,28 +58,30 @@ module BricksMeetBalls
       @moving = true
     end
 
-    def reflect(target)
+    def reflect(target, friction=0)
       if target.hit_on_top_or_bottom?(@x, @y)
-        reflect_x_axis
+        reflect_x_axis(friction)
       elsif target.hit_on_left_or_right?(@x, @y)
-        reflect_y_axis
+        reflect_y_axis(friction)
       end
     end
 
-    def reflect_x_axis
+    def reflect_x_axis(friction=0)
       if @angle <= 180
         @angle = 180 - @angle
       else
         @angle = 360 - (@angle - 180)
       end
+      @angle += friction
     end
 
-    def reflect_y_axis
+    def reflect_y_axis(friction=0)
       if @angle <= 180
         @angle = 180 + (180 - @angle)
       else
         @angle = 360 - @angle
       end
+      @angle += friction
     end
   end
 end
