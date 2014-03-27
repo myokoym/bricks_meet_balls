@@ -29,6 +29,8 @@ module BricksMeetBalls
       @num_of_rows = num_of_rows
       @num_of_balls = num_of_balls
       @endless = endless
+      @brick_width = self.width / @num_of_columns
+      @brick_height = @brick_width / 3
       create_bricks(@num_of_columns, @num_of_rows)
       create_balls(@num_of_balls)
       @background_image = nil
@@ -88,6 +90,7 @@ module BricksMeetBalls
 
     def draw
       draw_area
+      draw_background_image if @background_image
       @bricks.each {|brick| brick.draw }
       @balls.each {|ball| ball.draw }
       @bar.draw
@@ -115,36 +118,64 @@ module BricksMeetBalls
       @background_image = Gosu::Image.new(self, image_path, false)
     end
 
+    def enable_tiling_an_image_on_bricks
+      @tiling_an_image_on_bricks = true
+    end
+
     private
     def draw_area
       draw_square(self,
                   0, 0,
                   self.width, self.height,
                   Gosu::Color::WHITE, ZOrder::Background)
-      return unless @background_image
+    end
+
+    def draw_background_image
+      width = 1.0 * self.width / @background_image.width
+      height = 1.0 * @brick_height * @num_of_rows / @background_image.height
       @background_image.draw(0,
                              0,
                              ZOrder::Background,
-                             1.0 * self.width  / @background_image.width,
-                             0.5 * self.height / @background_image.height)
+                             width,
+                             height)
     end
 
     def create_bricks(num_of_columns, num_of_rows)
-      1.upto(num_of_columns) do |column|
-        1.upto(num_of_rows) do |row|
+      if @tiling_an_image_on_bricks
+        if @brick_images.is_a?(Array)
+          brick_image = @brick_images.sample
+        else
+          brick_image = @brick_images
+        end
+        tile_images = tiling(brick_image, num_of_columns, num_of_rows)
+      end
+      1.upto(num_of_rows) do |row|
+        1.upto(num_of_columns) do |column|
           if @brick_images.is_a?(Array)
             brick_image = @brick_images.sample
           else
             brick_image = @brick_images
           end
+          if @tiling_an_image_on_bricks
+            image_index = (column - 1) + (num_of_columns * (row - 1))
+            brick_image = tile_images[image_index]
+          end
           @bricks << Brick.new(self,
                                column,
                                row,
-                               self.width / num_of_columns,
-                               self.width / num_of_columns / 3,
+                               @brick_width,
+                               @brick_height,
                                brick_image)
         end
       end
+    end
+
+    def tiling(image_path, num_of_columns, num_of_rows)
+      Gosu::Image.load_tiles(self,
+                             image_path,
+                             -1 * num_of_columns,
+                             -1 * num_of_rows,
+                             false)
     end
 
     def create_balls(n)
