@@ -34,7 +34,7 @@ module BricksMeetBalls
       @image.draw(@x1 + @border_width,
                   @y1 + @border_width,
                   ZOrder::Brick,
-                  (0.95* @width  / @image.width),
+                  (0.95 * @width  / @image.width),
                   (0.95 * @height / @image.height))
     end
   end
