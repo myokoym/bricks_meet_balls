@@ -1,5 +1,14 @@
 # NEWS
 
+## 0.0.4: 2014-03-27
+
+### Changes
+
+  * Improvements
+    * Added accessor methods
+    * Support for tiling an image on bricks
+    * Support friction for ball with bar
+
 ## 0.0.3: 2014-03-27
 
 ### Changes
