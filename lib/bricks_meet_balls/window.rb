@@ -31,9 +31,13 @@ module BricksMeetBalls
       @endless = endless
       @brick_width = self.width / @num_of_columns
       @brick_height = @brick_width / 3
+      @background_image = nil
+    end
+
+    def show
       create_bricks(@num_of_columns, @num_of_rows)
       create_balls(@num_of_balls)
-      @background_image = nil
+      super
     end
 
     def update
