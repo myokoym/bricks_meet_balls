@@ -10,6 +10,10 @@ module BricksMeetBalls
   class Window < Gosu::Window
     include Util
 
+    attr_accessor :num_of_rows, :num_of_columns, :num_of_balls
+    attr_accessor :ball_images, :brick_images
+    attr_accessor :endless
+
     def initialize(width=240, height=480,
                    num_of_rows=2, num_of_columns=3, num_of_balls=1,
                    ball_images=nil, brick_images=nil, endless=false)
@@ -29,12 +33,12 @@ module BricksMeetBalls
       @num_of_rows = num_of_rows
       @num_of_balls = num_of_balls
       @endless = endless
-      @brick_width = self.width / @num_of_columns
-      @brick_height = @brick_width / 3
       @background_image = nil
     end
 
     def show
+      @brick_width = self.width / @num_of_columns
+      @brick_height = @brick_width / 3
       create_bricks(@num_of_columns, @num_of_rows)
       create_balls(@num_of_balls)
       super

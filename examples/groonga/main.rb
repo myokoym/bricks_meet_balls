@@ -34,13 +34,6 @@ BALL_IMAGES = [
   "droonga-icon-full-size.png",
 ]
 
-width = 640
-height = 480
-num_of_rows = 10
-num_of_columns = 8
-num_of_balls = 29
-endless = true
-
 base_dir = File.expand_path(File.dirname(__FILE__))
 ball_images = BALL_IMAGES.collect do |ball_image|
   File.join(base_dir, ball_image)
@@ -49,15 +42,13 @@ brick_images = BRICK_IMAGES.collect do |brick_image|
   File.join(base_dir, brick_image)
 end
 
-window = BricksMeetBalls::Window.new(width,
-                                     height,
-                                     num_of_rows,
-                                     num_of_columns,
-                                     num_of_balls,
-                                     ball_images,
-                                     brick_images,
-                                     endless)
-
+window = BricksMeetBalls::Window.new(640, 480)
+window.num_of_rows = 10
+window.num_of_columns = 8
+window.num_of_balls = 29
+window.ball_images = ball_images
+window.brick_images = brick_images
+window.endless = true
 window.set_background_image(brick_images.first)
 
 window.show
