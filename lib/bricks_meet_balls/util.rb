@@ -52,9 +52,5 @@ module BricksMeetBalls
     def drop?(y)
       y > @y2
     end
-
-    def base_dir
-      @base_dir ||= File.expand_path(File.dirname(__FILE__))
-    end
   end
 end
