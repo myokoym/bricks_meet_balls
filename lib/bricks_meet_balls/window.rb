@@ -23,10 +23,6 @@ module BricksMeetBalls
       @y1 = 0
       @x2 = width
       @y2 = height
-      @bricks = []
-      @balls = []
-      @bar = Bar.new(self)
-      @message = nil
       @ball_images = ball_images
       @brick_images = brick_images
       @num_of_columns = num_of_columns
@@ -34,6 +30,14 @@ module BricksMeetBalls
       @num_of_balls = num_of_balls
       @endless = endless
       @background_image = nil
+      init
+    end
+
+    def init
+      @bricks = []
+      @balls = []
+      @bar = Bar.new(self)
+      @message = nil
     end
 
     def show
