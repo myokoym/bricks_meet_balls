@@ -126,6 +126,10 @@ module BricksMeetBalls
       end
     end
 
+    def background_image=(image_path)
+      set_background_image(image_path)
+    end
+
     def set_background_image(image_path)
       @background_image = Gosu::Image.new(self, image_path, false)
     end
